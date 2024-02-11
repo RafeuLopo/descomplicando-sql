@@ -225,3 +225,20 @@ ON t1.idCliente = t2.idCliente
 
 GROUP BY t2.descUF
 ORDER BY avgPedidoCliente DESC
+
+-- COMMAND ----------
+
+-- DBTITLE 1,AVALIAÇÃO
+-- Qual vendedor mais vendeu pcs?
+
+SELECT t1.idVendedor,
+       count(t2.descCategoria)
+
+FROM silver.olist.item_pedido AS t1
+
+LEFT JOIN silver.olist.produto AS t2
+ON t1.idProduto = t2.idProduto
+
+WHERE t2.descCategoria = 'pcs'
+
+GROUP BY t1.idVendedor
